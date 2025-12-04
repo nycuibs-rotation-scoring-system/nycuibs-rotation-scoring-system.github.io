@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>學生評分系統</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app">
+        <!-- 全站載入遮罩（初始顯示，以避免畫面閃爍） -->
+        <div id="app-loading" class="loading-overlay">
+            <div class="spinner"></div>
+            <p>載入中…</p>
+        </div>
+
+        <!-- 登入區域 -->
+        <div id="login-section" class="section hidden">
+            <div class="card login-card">
+                <h1>🎓 學生評分系統</h1>
+                <p class="subtitle">請使用 Google 帳號登入</p>
+                <button id="login-btn" class="btn btn-primary btn-large">
+                    <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google" class="google-icon">
+                    使用 Google 登入
+                </button>
+                <div id="login-error" class="error-message hidden"></div>
+            </div>
+        </div>
+
+        <!-- 主要應用區域 -->
+        <div id="main-section" class="section hidden">
+            <!-- 頂部導航欄 -->
+            <header class="header">
+                <div class="header-left">
+                    <h1>🎓 學生評分系統</h1>
+                </div>
+                <div class="header-right">
+                    <span id="user-info" class="user-info"></span>
+                    <button id="logout-btn" class="btn btn-secondary">登出</button>
+                </div>
+            </header>
+
+            <!-- 標籤頁導航 -->
+            <nav class="tabs">
+                <button class="tab-btn active" data-tab="scoring">評分</button>
+                <button class="tab-btn" data-tab="management">關係管理</button>
+            </nav>
+
+            <!-- 評分頁面 -->
+            <div id="scoring-tab" class="tab-content active">
+                <div class="card">
+                    <h2>📝 學生評分</h2>
+                    <p class="description">以下是您可以評分的學生清單</p>
+                    
+                    <div id="students-loading" class="loading">
+                        <div class="spinner"></div>
+                        <p>載入中...</p>
+                    </div>
+                    
+                    <div id="students-empty" class="empty-state hidden">
+                        <p>😕 目前沒有指派給您評分的學生</p>
+                    </div>
+                    
+                    <div id="students-list" class="students-grid hidden"></div>
+                </div>
+            </div>
+
+            <!-- 關係管理頁面 -->
+            <div id="management-tab" class="tab-content hidden">
+                <div class="card">
+                    <h2>⚙️ 老師-學生對應關係管理</h2>
+                    <p class="description">新增、修改或刪除老師與學生的評分對應關係</p>
+                    
+                    <!-- 新增關係表單 -->
+                    <div class="form-section">
+                        <h3>新增對應關係</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="new-teacher">老師</label>
+                                <select id="new-teacher" class="form-control">
+                                    <option value="">請選擇老師</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="new-student">學生</label>
+                                <select id="new-student" class="form-control">
+                                    <option value="">請選擇學生</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <button id="add-relation-btn" class="btn btn-primary">新增</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 新增老師表單 -->
+                    <div class="form-section">
+                        <h3>新增老師</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="new-teacher-name">老師姓名</label>
+                                <input type="text" id="new-teacher-name" class="form-control" placeholder="輸入老師姓名">
+                            </div>
+                            <div class="form-group">
+                                <label for="new-teacher-email">老師 Email</label>
+                                <input type="email" id="new-teacher-email" class="form-control" placeholder="輸入 Gmail">
+                            </div>
+                            <div class="form-group">
+                                <button id="add-teacher-btn" class="btn btn-success">新增老師</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 新增學生表單 -->
+                    <div class="form-section">
+                        <h3>新增學生</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="new-student-number">學號</label>
+                                <input type="text" id="new-student-number" class="form-control" placeholder="輸入學號 (例如 300113000)">
+                            </div>
+                            <div class="form-group">
+                                <label for="new-student-name">學生姓名</label>
+                                <input type="text" id="new-student-name" class="form-control" placeholder="輸入學生姓名">
+                            </div>
+                            <div class="form-group">
+                                <button id="add-student-btn" class="btn btn-success">新增學生</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 現有關係列表 -->
+                    <div class="relations-section">
+                        <h3>現有對應關係</h3>
+                        <div id="relations-loading" class="loading">
+                            <div class="spinner"></div>
+                            <p>載入中...</p>
+                        </div>
+                        <table id="relations-table" class="data-table hidden">
+                            <thead>
+                                <tr>
+                                    <th>老師</th>
+                                    <th>學生</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody id="relations-tbody"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 評分彈窗 -->
+        <div id="score-modal" class="modal hidden">
+            <div class="modal-backdrop"></div>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>評分 - <span id="modal-student-name"></span></h3>
+                    <button class="modal-close">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="score-input">分數 (0-100)</label>
+                        <input type="number" id="score-input" class="form-control" min="0" max="100" placeholder="請輸入分數">
+                    </div>
+                    <div class="form-group">
+                        <label for="comment-input">備註 (選填)</label>
+                        <textarea id="comment-input" class="form-control" rows="3" placeholder="輸入備註..."></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="cancel-score-btn" class="btn btn-secondary">取消</button>
+                    <button id="submit-score-btn" class="btn btn-primary">提交評分</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Toast 通知 -->
+        <div id="toast" class="toast hidden"></div>
+    </div>
+
+    <!-- Optional: env.js can set window.APP_CONFIG before config.js to avoid committing secrets -->
+    <script src="env.js"></script>
+    <script src="config.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
