@@ -25,15 +25,12 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Create env.js from secrets
-        env:
-          GOOGLE_CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}
-          SPREADSHEET_ID: ${{ secrets.SPREADSHEET_ID }}
         run: |
           echo "Creating runtime env.js from repository secrets"
-          cat > env.js <<'EOF'
+          cat > env.js << EOF
           window.APP_CONFIG = {
-            GOOGLE_CLIENT_ID: "${GOOGLE_CLIENT_ID}",
-            SPREADSHEET_ID: "${SPREADSHEET_ID}"
+            GOOGLE_CLIENT_ID: "${{ secrets.GOOGLE_CLIENT_ID }}",
+            SPREADSHEET_ID: "${{ secrets.SPREADSHEET_ID }}"
           };
           EOF
 
