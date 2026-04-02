@@ -32,6 +32,13 @@ function isSheetsPermissionError(err) {
     return false;
 }
 
+// HTML 屬性值跳脫（防止 data-* 屬性中出現 " 破壞 HTML 結構）
+function escapeAttr(str) {
+    return String(str == null ? '' : str)
+        .replace(/&/g, '&amp;')
+        .replace(/"/g, '&quot;');
+}
+
 // DOM 元素
 const elements = {};
 
@@ -306,10 +313,10 @@ function clearSavedSession() {
 async function restoreSessionIfAny() {
     try {
         const raw = localStorage.getItem(SESSION_KEY);
-        if (!raw) return;
+        if (!raw) return false;
 
         const obj = JSON.parse(raw);
-        if (!obj || !obj.token || !obj.token.access_token) return;
+        if (!obj || !obj.token || !obj.token.access_token) return false;
 
         // 將 token 加到 gapi client
         gapi.client.setToken(obj.token);
@@ -432,6 +439,7 @@ async function loadAllData() {
             loadScoresData(),
             loadExportsData()
         ]);
+        dataLoaded = true;
         return true;
     } catch (error) {
         console.error('Error loading data:', error);
@@ -661,11 +669,26 @@ function renderStudentsList() {
                     <span class="score-value ${scoreClass}">${scoreValue}</span>
                 </div>
                 <div class="student-actions">
-                    <button class="${btnClass}" onclick="openScoreModal('${student.id}', '${student.name}', '${scoreValue}', '${scoreRecord?.comment || ''}')">${btnText}</button>
+                    <button class="${btnClass}"
+                        data-student-id="${escapeAttr(student.id)}"
+                        data-student-name="${escapeAttr(student.name)}"
+                        data-score="${escapeAttr(scoreValue)}"
+                        data-comment="${escapeAttr(scoreRecord?.comment || '')}">${btnText}</button>
                 </div>
             </div>
         `;
     }).join('');
+
+    elements.studentsList.querySelectorAll('.student-actions button').forEach(btn => {
+        btn.addEventListener('click', () => {
+            openScoreModal(
+                btn.dataset.studentId,
+                btn.dataset.studentName,
+                btn.dataset.score,
+                btn.dataset.comment
+            );
+        });
+    });
 }
 
 /**
@@ -1010,5 +1033,4 @@ function showToast(message, type = 'info') {
 }
 
 // 將需要從 HTML 呼叫的函數暴露到全域
-window.openScoreModal = openScoreModal;
 window.deleteRelation = deleteRelation;
