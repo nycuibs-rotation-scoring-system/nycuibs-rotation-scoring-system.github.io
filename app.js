@@ -344,7 +344,6 @@ async function restoreSessionIfAny() {
         }
 
         // 若一切正常，回傳成功，caller 決定要顯示主畫面
-        dataLoaded = true;
         return true;
     } catch (err) {
         console.warn('restoreSessionIfAny failed', err);
