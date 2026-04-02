@@ -14,17 +14,33 @@
             <p>載入中…</p>
         </div>
 
-        <!-- 登入區域 -->
+        <!-- 公開首頁 / 登入區域 -->
         <div id="login-section" class="section hidden">
-            <div class="card login-card">
-                <h1>🎓 學生評分系統</h1>
-                <p class="subtitle">請使用 Google 帳號登入</p>
-                <button id="login-btn" class="btn btn-primary btn-large">
-                    <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google" class="google-icon">
-                    使用 Google 登入
-                </button>
-                <div id="login-error" class="error-message hidden"></div>
+
+            <!-- 登入卡片 -->
+            <div class="landing-center">
+                <div class="landing-card">
+                    <div class="landing-logo">🎓</div>
+                    <h1 class="landing-title">學生評分系統</h1>
+                    <p class="landing-desc">NYCUIBS Rotation Scoring System</p>
+                    <button id="login-btn" class="btn btn-hero">
+                        <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google" class="google-icon">
+                        使用 Google 帳號登入
+                    </button>
+                    <p class="login-hint">僅限已授權帳號</p>
+                    <div id="login-error" class="error-message hidden"></div>
+                </div>
             </div>
+
+            <!-- 頁尾 -->
+            <footer class="landing-footer">
+                <div class="footer-links">
+                    <a href="privacy-policy.html">隱私權政策</a>
+                    <span class="footer-sep">·</span>
+                    <a href="terms-of-service.html">服務條款</a>
+                </div>
+            </footer>
+
         </div>
 
         <!-- 主要應用區域 -->
