@@ -188,17 +188,35 @@ npx serve -p 5500
 
 ### GitHub Actions 部署注入
 
-- 現有的 [deploy workflow](.github/workflows/deploy.yml) 會在部署時產生 `env.js`。
-- 請在 GitHub repository secrets 中設定以下三個值：`GOOGLE_CLIENT_ID`、`SPREADSHEET_ID`、`LEGAL_CONTACT`。
-- workflow 產生的格式如下：
+現有的 [deploy workflow](.github/workflows/deploy.yml) 會在部署時自動產生 `env.js` 並注入首頁 meta tag，需在 GitHub repository 中設定以下變數：
 
-```javascript
-window.APP_CONFIG = {
-   GOOGLE_CLIENT_ID: 'your-client-id.apps.googleusercontent.com',
-   SPREADSHEET_ID: 'your-spreadsheet-id',
-   LEGAL_CONTACT: '系統管理者名稱'
-};
+| 變數名稱 | 類型 | 說明 |
+| :--- | :--- | :--- |
+| `GOOGLE_CLIENT_ID` | **Secret** | Google OAuth 2.0 Web client ID |
+| `SPREADSHEET_ID` | Variable | Google Sheets 試算表 ID |
+| `LEGAL_CONTACT` | Variable | 隱私權政策與服務條款頁面顯示的聯絡名稱 |
+| `GOOGLE_SITE_VERIFICATION` | Variable | Google Search Console 網站驗證碼（見下方說明） |
+
+設定位置：GitHub repo → **Settings** → **Secrets and variables** → **Actions**
+
+#### `GOOGLE_SITE_VERIFICATION` 設定方式
+
+此變數用於 Google OAuth 品牌驗證所需的網站所有權確認，workflow 會自動將其注入 `index.html` 的 meta tag：
+
+```html
+<meta name="google-site-verification" content="此處填入驗證碼">
 ```
+
+取得驗證碼的步驟：
+
+1. 前往 [Google Search Console](https://search.google.com/search-console)
+2. 新增資源，輸入網站網址（例如 `https://your-org.github.io/`）
+3. 選擇驗證方式：**HTML 標記**
+4. 複製 `content="..."` 引號內的驗證碼字串（格式如 `abcdefg1234567...`）
+5. 到 GitHub repo → Settings → Secrets and variables → Actions → **Variables** 分頁，新增變數 `GOOGLE_SITE_VERIFICATION`，貼上該字串
+6. 手動觸發一次 workflow（或推送任意 commit），等待部署完成後回到 Search Console 點擊「驗證」
+
+> **注意**：若尚未取得驗證碼，`GOOGLE_SITE_VERIFICATION` 可先留空，meta tag 的 `content` 會為空字串，不影響網站正常運作。
 
 ## 常見問題
 

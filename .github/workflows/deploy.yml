@@ -35,6 +35,10 @@ jobs:
           };
           EOF
 
+      - name: Inject Google Site Verification meta tag
+        run: |
+          sed -i 's/__GOOGLE_SITE_VERIFICATION__/${{ vars.GOOGLE_SITE_VERIFICATION }}/g' index.html
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 

@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>學生評分系統</title>
+    <title>NYCU IBS Rotation Scoring System</title>
+    <meta name="google-site-verification" content="__GOOGLE_SITE_VERIFICATION__">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -15,39 +16,95 @@
         </div>
 
         <!-- 公開首頁 / 登入區域 -->
-        <div id="login-section" class="section hidden">
+        <div id="login-section" class="section">
 
-            <!-- 登入卡片 -->
-            <div class="landing-center">
-                <div class="landing-card">
-                    <div class="landing-logo">🎓</div>
-                    <h1 class="landing-title">學生評分系統</h1>
-                    <p class="landing-desc">NYCUIBS Rotation Scoring System</p>
+            <!-- 頂部導覽列 -->
+            <nav class="pub-nav">
+                <div class="pub-nav-brand">🎓 NYCU IBS Rotation Scoring System</div>
+                <button id="lang-toggle" class="pub-lang-toggle" aria-label="Switch language">EN</button>
+            </nav>
 
-                    <div class="landing-about">
-                        <p>本系統供國立陽明交通大學腦科學研究所授權教師，針對期間所指導的學生進行評分與紀錄。</p>
-                        <ul>
-                            <li>教師登入後可查看並評分名單內的學生</li>
-                            <li>支援填寫評分備註，紀錄完整回饋</li>
-                            <li>系統僅開放已授權教師帳號使用</li>
-                        </ul>
-                    </div>
+            <!-- Hero 區域（含登入） -->
+            <section class="pub-hero">
+                <h1 class="pub-hero-title">NYCU IBS<br>Rotation Scoring System</h1>
+                <p class="pub-hero-sub">
+                    <span class="zh">國立陽明交通大學腦科學研究所教師評分管理平台</span>
+                    <span class="en">Faculty Grading Platform · Institute of Brain Science, NYCU</span>
+                </p>
 
+                <div class="pub-hero-signin">
                     <button id="login-btn" class="btn btn-hero">
                         <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google" class="google-icon">
-                        使用 Google 帳號登入
+                        <span class="zh">開始評分</span>
+                        <span class="en">Start Grading</span>
                     </button>
-                    <p class="login-hint">僅限已授權帳號</p>
+                    <p class="login-hint">
+                        <span class="zh">僅限已授權帳號</span>
+                        <span class="en">Authorized accounts only</span>
+                    </p>
                     <div id="login-error" class="error-message hidden"></div>
                 </div>
-            </div>
+
+                <a href="#pub-about" class="pub-hero-more">
+                    <span class="zh">了解更多 ↓</span>
+                    <span class="en">Learn more ↓</span>
+                </a>
+            </section>
+
+            <!-- 關於系統 -->
+            <section id="pub-about" class="pub-about">
+                <div class="pub-container">
+                    <h2>
+                        <span class="zh">關於本系統</span>
+                        <span class="en">About</span>
+                    </h2>
+                    <p class="zh">本系統為國立陽明交通大學腦科學研究所授權教師提供線上評分平台，協助教師記錄並管理所指導學生的評分。</p>
+                    <p class="en">The <strong>NYCU IBS Rotation Scoring System</strong> is an online platform for faculty members at the Institute of Brain Science, National Yang Ming Chiao Tung University (NYCU IBS). It enables authorized instructors to record and manage scores for the students they supervise.</p>
+                </div>
+            </section>
+
+            <!-- 功能特色 -->
+            <section class="pub-features">
+                <div class="pub-container">
+                    <h2>
+                        <span class="zh">功能特色</span>
+                        <span class="en">Features</span>
+                    </h2>
+                    <div class="pub-features-grid">
+                        <div class="pub-feature">
+                            <span class="pub-feature-icon">🔐</span>
+                            <h3><span class="zh">安全登入</span><span class="en">Secure Sign-In</span></h3>
+                            <p class="zh">教師使用 Google 帳號登入，僅限事先授權的帳號方可存取系統。</p>
+                            <p class="en">Faculty sign in with their Google account. Access is limited to pre-authorized institutional accounts only.</p>
+                        </div>
+                        <div class="pub-feature">
+                            <span class="pub-feature-icon">📝</span>
+                            <h3><span class="zh">評分紀錄</span><span class="en">Grade Recording</span></h3>
+                            <p class="zh">為所指導的學生提交數字評分，並可附上文字回饋與備註。</p>
+                            <p class="en">Submit numerical scores and written feedback for each supervised student.</p>
+                        </div>
+                        <div class="pub-feature">
+                            <span class="pub-feature-icon">📋</span>
+                            <h3><span class="zh">名單管理</span><span class="en">Roster Management</span></h3>
+                            <p class="zh">查看並維護指派給您的學生名單，確保評分資料準確完整。</p>
+                            <p class="en">View and manage the student list assigned to you for organized and accurate record-keeping.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
             <!-- 頁尾 -->
             <footer class="landing-footer">
                 <div class="footer-links">
-                    <a href="privacy-policy.html">隱私權政策</a>
+                    <a href="privacy-policy.html">
+                        <span class="zh">隱私權政策</span>
+                        <span class="en">Privacy Policy</span>
+                    </a>
                     <span class="footer-sep">·</span>
-                    <a href="terms-of-service.html">服務條款</a>
+                    <a href="terms-of-service.html">
+                        <span class="zh">服務條款</span>
+                        <span class="en">Terms of Service</span>
+                    </a>
                 </div>
             </footer>
 
@@ -58,7 +115,7 @@
             <!-- 頂部導航欄 -->
             <header class="header">
                 <div class="header-left">
-                    <h1>🎓 學生評分系統</h1>
+                    <h1>🎓 NYCU IBS Rotation Scoring System</h1>
                 </div>
                 <div class="header-right">
                     <span id="user-info" class="user-info"></span>
@@ -210,5 +267,15 @@
     <script src="env.js"></script>
     <script src="config.js"></script>
     <script src="app.js"></script>
+    <script>
+        (function () {
+            var toggle = document.getElementById('lang-toggle');
+            if (!toggle) return;
+            toggle.addEventListener('click', function () {
+                var isEn = document.documentElement.classList.toggle('lang-en');
+                toggle.textContent = isEn ? '中' : 'EN';
+            });
+        })();
+    </script>
 </body>
 </html>
