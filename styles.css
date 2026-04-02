@@ -592,7 +592,49 @@ body {
 .landing-desc {
     font-size: 14px;
     color: #888;
-    margin-bottom: 32px;
+    margin-bottom: 20px;
+}
+
+/* 系統說明區塊 */
+.landing-about {
+    background: #f8f7ff;
+    border-radius: 10px;
+    padding: 16px 18px;
+    margin-bottom: 28px;
+    text-align: left;
+}
+
+.landing-about p {
+    font-size: 13px;
+    color: #555;
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+.landing-about ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.landing-about li {
+    font-size: 13px;
+    color: #666;
+    padding-left: 18px;
+    position: relative;
+    line-height: 1.5;
+}
+
+.landing-about li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #7c3aed;
+    font-size: 12px;
+    font-weight: 700;
 }
 
 /* Hero 登入按鈕 */
