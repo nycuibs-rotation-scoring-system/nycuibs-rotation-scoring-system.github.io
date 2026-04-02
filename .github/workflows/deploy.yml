@@ -30,7 +30,8 @@ jobs:
           cat > env.js << EOF
           window.APP_CONFIG = {
             GOOGLE_CLIENT_ID: "${{ secrets.GOOGLE_CLIENT_ID }}",
-            SPREADSHEET_ID: "${{ secrets.SPREADSHEET_ID }}"
+            SPREADSHEET_ID: "${{ secrets.SPREADSHEET_ID }}",
+            LEGAL_CONTACT: "${{ secrets.LEGAL_CONTACT }}"
           };
           EOF
 

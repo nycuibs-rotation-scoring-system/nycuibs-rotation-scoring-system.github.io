@@ -73,7 +73,7 @@ function initElements() {
     elements.studentsEmpty = document.getElementById('students-empty');
     elements.studentsList = document.getElementById('students-list');
     
-    // 關係管理
+    // 名單設定
     elements.newTeacher = document.getElementById('new-teacher');
     elements.newStudent = document.getElementById('new-student');
     elements.addRelationBtn = document.getElementById('add-relation-btn');
@@ -112,7 +112,7 @@ function initEventListeners() {
         btn.addEventListener('click', () => switchTab(btn.dataset.tab));
     });
     
-    // 關係管理
+    // 名單設定
     elements.addRelationBtn.addEventListener('click', handleAddRelation);
     elements.addTeacherBtn.addEventListener('click', handleAddTeacher);
     elements.addStudentBtn.addEventListener('click', handleAddStudent);
@@ -697,14 +697,50 @@ function renderStudentsList() {
 function renderManagementTab() {
     elements.relationsLoading.classList.add('hidden');
     elements.relationsTable.classList.remove('hidden');
-    
-    // 填充老師下拉選單
-    elements.newTeacher.innerHTML = '<option value="">請選擇老師</option>' +
-        teachersData.map(t => `<option value="${t.email}">${t.name} (${t.email})</option>`).join('');
-    
-    // 填充學生下拉選單
-    elements.newStudent.innerHTML = '<option value="">請選擇學生</option>' +
-        studentsData.map(s => `<option value="${s.id}">${s.name} (${s.id})</option>`).join('');
+
+    const currentTeacherEmail = currentUser && currentUser.email ? currentUser.email : '';
+    const currentTeacher = teachersData.find(
+        teacher => teacher.email.toLowerCase() === currentTeacherEmail.toLowerCase()
+    );
+
+    // 新增對應關係時只允許使用目前登入老師
+    elements.newTeacher.innerHTML = currentTeacher
+        ? `<option value="${currentTeacher.email}">${currentTeacher.name} (${currentTeacher.email})</option>`
+        : '<option value="">目前無可用老師資料</option>';
+    elements.newTeacher.disabled = true;
+
+    const myStudentIds = new Set(
+        relationsData
+            .filter(relation => relation.teacherEmail.toLowerCase() === currentTeacherEmail.toLowerCase())
+            .map(relation => relation.studentId)
+    );
+
+    const availableStudents = studentsData.filter(student => !myStudentIds.has(student.id));
+    const existingStudents = studentsData.filter(student => myStudentIds.has(student.id));
+
+    const optionGroups = ['<option value="">請選擇學生</option>'];
+
+    if (availableStudents.length > 0) {
+        optionGroups.push(
+            `<optgroup label="可加入名單">${availableStudents
+                .map(student => `<option value="${student.id}">${student.name} (${student.id})</option>`)
+                .join('')}</optgroup>`
+        );
+    }
+
+    if (existingStudents.length > 0) {
+        optionGroups.push(
+            `<optgroup label="已在名單中">${existingStudents
+                .map(student => `<option value="${student.id}" disabled>${student.name} (${student.id}) - 已加入</option>`)
+                .join('')}</optgroup>`
+        );
+    }
+
+    if (availableStudents.length === 0 && existingStudents.length === 0) {
+        optionGroups.push('<option value="" disabled>目前沒有可選學生</option>');
+    }
+
+    elements.newStudent.innerHTML = optionGroups.join('');
     
     // 渲染關係表格
     renderRelationsTable();
@@ -714,7 +750,23 @@ function renderManagementTab() {
  * 渲染關係表格
  */
 function renderRelationsTable() {
-    elements.relationsTbody.innerHTML = relationsData.map(relation => {
+    const visibleRelations = relationsData.filter(relation => {
+        if (!currentUser || !currentUser.email) {
+            return false;
+        }
+        return relation.teacherEmail.toLowerCase() === currentUser.email.toLowerCase();
+    });
+
+    if (visibleRelations.length === 0) {
+        elements.relationsTbody.innerHTML = `
+            <tr>
+                <td colspan="3">目前沒有可顯示的對應關係</td>
+            </tr>
+        `;
+        return;
+    }
+
+    elements.relationsTbody.innerHTML = visibleRelations.map(relation => {
         const teacher = teachersData.find(t => t.email.toLowerCase() === relation.teacherEmail.toLowerCase());
         const student = studentsData.find(s => s.id === relation.studentId);
         
@@ -819,11 +871,16 @@ async function handleSubmitScore() {
  * 處理新增對應關係
  */
 async function handleAddRelation() {
-    const teacherEmail = elements.newTeacher.value;
+    const teacherEmail = currentUser && currentUser.email ? currentUser.email : '';
     const studentId = elements.newStudent.value;
     
     if (!teacherEmail || !studentId) {
-        showToast('請選擇老師和學生', 'error');
+        showToast('請選擇學生', 'error');
+        return;
+    }
+
+    if (elements.newTeacher.value && elements.newTeacher.value.toLowerCase() !== teacherEmail.toLowerCase()) {
+        showToast('只能新增目前登入老師的學生對應關係', 'error');
         return;
     }
     
@@ -833,7 +890,7 @@ async function handleAddRelation() {
     );
     
     if (exists) {
-        showToast('此對應關係已存在', 'error');
+        showToast('此學生已在目前名單中', 'error');
         return;
     }
     
@@ -847,19 +904,20 @@ async function handleAddRelation() {
             }
         });
         
-        showToast('對應關係已新增', 'success');
+        showToast('學生已加入目前名單', 'success');
         
         // 重新載入資料
         await loadRelationsData();
         renderManagementTab();
         renderStudentsList();
+        elements.newStudent.value = '';
         
     } catch (error) {
         console.error('Error adding relation:', error);
         if (isSheetsPermissionError(error)) {
             showToast('您沒有權限執行此操作，請使用具有權限的帳號或聯絡管理員。', 'error');
         } else {
-            showToast('新增對應關係失敗', 'error');
+            showToast('更新評分名單失敗', 'error');
         }
     }
 }

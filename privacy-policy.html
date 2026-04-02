@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>隱私權政策 - 學生評分系統</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            margin-bottom: 24px;
+            opacity: 0.9;
+            transition: opacity 0.2s;
+        }
+
+        .back-link:hover {
+            opacity: 1;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            margin-bottom: 20px;
+        }
+
+        .page-header {
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 24px;
+            margin-bottom: 32px;
+        }
+
+        .page-header h1 {
+            font-size: 1.8rem;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .page-header .meta {
+            color: #888;
+            font-size: 13px;
+        }
+
+        h2 {
+            font-size: 1.1rem;
+            color: #333;
+            margin-top: 32px;
+            margin-bottom: 12px;
+            padding-left: 12px;
+            border-left: 3px solid #667eea;
+        }
+
+        p {
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 12px;
+            font-size: 14px;
+        }
+
+        ul {
+            margin: 8px 0 12px 0;
+            padding-left: 24px;
+        }
+
+        li {
+            color: #555;
+            line-height: 1.8;
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+
+        .highlight-box {
+            background: #f8f7ff;
+            border: 1px solid #e0deff;
+            border-radius: 8px;
+            padding: 16px 20px;
+            margin: 16px 0;
+        }
+
+        .highlight-box p {
+            margin-bottom: 0;
+            color: #555;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        footer {
+            text-align: center;
+            color: rgba(255,255,255,0.7);
+            font-size: 13px;
+            margin-top: 32px;
+            padding-bottom: 20px;
+        }
+
+        footer a {
+            color: rgba(255,255,255,0.9);
+        }
+
+        @media (max-width: 600px) {
+            .card {
+                padding: 24px;
+            }
+
+            .page-header h1 {
+                font-size: 1.4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">← 返回學生評分系統</a>
+
+        <div class="card">
+            <div class="page-header">
+                <h1>隱私權政策</h1>
+                <p class="meta">最後更新日期：2026 年 4 月 2 日</p>
+            </div>
+
+            <p>
+                歡迎使用「學生評分系統」（以下簡稱「本服務」）。本隱私權政策說明我們如何收集、使用及保護您在使用本服務時所提供的個人資訊。請您在使用本服務前詳閱本政策。
+            </p>
+
+            <h2>1. 資料控管者</h2>
+            <p>
+                本服務由 <span data-contact-name>本系統管理者</span> 負責部署與維運。如有任何隱私相關疑問，請透過本頁末尾的聯絡方式與我們聯繫。
+            </p>
+
+            <h2>2. 我們收集的資訊</h2>
+            <p>本服務透過 Google OAuth 2.0 登入驗證，會存取以下資訊：</p>
+            <ul>
+                <li><strong>Google 帳號電子郵件地址</strong>：用於驗證身份及確認是否在授權老師名單中</li>
+                <li><strong>姓名</strong>：用於在介面中顯示目前登入的使用者</li>
+                <li><strong>Google 基本個人資料</strong>：例如姓名或頭像等公開資料欄位，供登入識別與介面顯示使用（如適用）</li>
+            </ul>
+            <p>此外，使用本服務時會產生以下業務資料：</p>
+            <ul>
+                <li><strong>評分紀錄</strong>：老師輸入的學生分數與備註，儲存於您的 Google Sheets</li>
+                <li><strong>操作時間戳記</strong>：評分動作的執行時間</li>
+            </ul>
+
+            <h2>3. 資訊的使用方式</h2>
+            <p>我們使用收集到的資訊僅用於以下目的：</p>
+            <ul>
+                <li>驗證使用者身份，確保只有授權老師可存取本系統</li>
+                <li>決定該老師可評分的學生範圍</li>
+                <li>在介面中顯示使用者名稱及登入狀態</li>
+                <li>記錄並儲存評分資料至 Google Sheets</li>
+            </ul>
+
+            <h2>4. 資料儲存</h2>
+            <div class="highlight-box">
+                <p>本服務為純前端應用程式，<strong>不設有後端伺服器，不儲存任何資料於第三方資料庫</strong>。所有業務資料僅儲存於您自行管理的 Google Sheets 試算表中。</p>
+            </div>
+            <p>以下資料會暫存於您的瀏覽器本機：</p>
+            <ul>
+                <li><strong>瀏覽器 localStorage</strong>（key: <code>grading_app_session_v1</code>）：儲存 Google OAuth 存取權杖（access token）及使用者基本資訊，用於維持登入狀態。此資料僅存在於您的裝置上，不會傳送至任何第三方。</li>
+            </ul>
+            <p>存取權杖會在過期或登出後自動失效。您可隨時透過瀏覽器開發工具清除 localStorage 以移除本機暫存資料。</p>
+
+            <h2>5. 第三方服務</h2>
+            <p>本服務整合以下 Google 服務，其使用受 Google 隱私權政策規範：</p>
+            <ul>
+                <li><strong>Google Identity Services（GIS）</strong>：處理 OAuth 2.0 登入驗證</li>
+                <li><strong>Google Sheets API v4</strong>：讀取與寫入試算表資料</li>
+            </ul>
+            <p>
+                Google 的隱私權政策請參閱：
+                <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">https://policies.google.com/privacy</a>
+            </p>
+
+            <h2>6. 資料共享</h2>
+            <p>
+                我們不會將您的個人資訊出售、交易或轉讓給任何第三方。評分資料僅儲存於系統管理者所設定的 Google Sheets 中，並依照該試算表的分享權限設定控管存取範圍。
+            </p>
+
+            <h2>7. 資料安全</h2>
+            <p>我們採取以下措施保護資料安全：</p>
+            <ul>
+                <li>使用 Google OAuth 2.0 標準流程，不儲存您的 Google 密碼</li>
+                <li>存取權杖僅於必要操作期間使用，過期後即失效</li>
+                <li>所有與 Google API 的通訊均透過 HTTPS 加密傳輸</li>
+                <li>系統會依登入身分、對應設定及試算表分享權限提供相應的操作介面與資料處理功能</li>
+            </ul>
+            <p>
+                請注意：將存取權杖儲存於瀏覽器 localStorage 存在 XSS 攻擊的潛在風險。建議在受信任的裝置及網路環境下使用本服務，並於使用完畢後點擊「登出」。
+            </p>
+
+            <h2>8. 您的權利</h2>
+            <p>您有權：</p>
+            <ul>
+                <li>隨時透過 Google 帳號設定撤銷本應用程式的存取授權</li>
+                <li>透過瀏覽器設定清除本機 localStorage 資料</li>
+                <li>要求系統管理者刪除 Google Sheets 中的個人相關評分紀錄</li>
+            </ul>
+            <p>
+                如需撤銷本應用程式的 Google 帳號存取授權，請前往：
+                <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener noreferrer">https://myaccount.google.com/permissions</a>
+            </p>
+
+            <h2>9. 未成年人隱私</h2>
+            <p>
+                本服務設計供教師使用。系統中涉及學生資料（學號、姓名、成績）的部分，由系統管理者及使用本服務的教師依其所在機構的相關法規負責管理與保護。
+            </p>
+
+            <h2>10. 隱私政策變更</h2>
+            <p>
+                我們可能不時更新本隱私權政策。更新後將在本頁面公告，並更新頁首的「最後更新日期」。建議您定期查閱本頁面以了解最新政策。
+            </p>
+
+            <h2>11. 聯絡我們</h2>
+            <p>
+                如您對本隱私權政策有任何疑問，請聯絡 <span data-contact-name>本系統管理者</span>。
+            </p>
+        </div>
+
+        <footer>
+            <a href="index.html">學生評分系統</a> &nbsp;·&nbsp;
+            <a href="terms-of-service.html">服務條款</a>
+        </footer>
+    </div>
+    <script src="env.js"></script>
+    <script>
+        (function () {
+            const appConfig = window.APP_CONFIG || {};
+            const contactName = (appConfig.LEGAL_CONTACT || '').trim() || '本系統管理者';
+
+            document.querySelectorAll('[data-contact-name]').forEach((element) => {
+                element.textContent = contactName;
+            });
+        })();
+    </script>
+</body>
+</html>

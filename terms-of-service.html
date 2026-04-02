@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>服務條款 - 學生評分系統</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            margin-bottom: 24px;
+            opacity: 0.9;
+            transition: opacity 0.2s;
+        }
+
+        .back-link:hover {
+            opacity: 1;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            margin-bottom: 20px;
+        }
+
+        .page-header {
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 24px;
+            margin-bottom: 32px;
+        }
+
+        .page-header h1 {
+            font-size: 1.8rem;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .page-header .meta {
+            color: #888;
+            font-size: 13px;
+        }
+
+        h2 {
+            font-size: 1.1rem;
+            color: #333;
+            margin-top: 32px;
+            margin-bottom: 12px;
+            padding-left: 12px;
+            border-left: 3px solid #667eea;
+        }
+
+        p {
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 12px;
+            font-size: 14px;
+        }
+
+        ul {
+            margin: 8px 0 12px 0;
+            padding-left: 24px;
+        }
+
+        li {
+            color: #555;
+            line-height: 1.8;
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+
+        .highlight-box {
+            background: #f8f7ff;
+            border: 1px solid #e0deff;
+            border-radius: 8px;
+            padding: 16px 20px;
+            margin: 16px 0;
+        }
+
+        .highlight-box p {
+            margin-bottom: 0;
+            color: #555;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        footer {
+            text-align: center;
+            color: rgba(255,255,255,0.7);
+            font-size: 13px;
+            margin-top: 32px;
+            padding-bottom: 20px;
+        }
+
+        footer a {
+            color: rgba(255,255,255,0.9);
+        }
+
+        @media (max-width: 600px) {
+            .card {
+                padding: 24px;
+            }
+
+            .page-header h1 {
+                font-size: 1.4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">← 返回學生評分系統</a>
+
+        <div class="card">
+            <div class="page-header">
+                <h1>服務條款</h1>
+                <p class="meta">最後更新日期：2026 年 4 月 2 日</p>
+            </div>
+
+            <p>
+                歡迎使用「學生評分系統」（以下簡稱「本服務」）。請您在使用本服務前，詳細閱讀並理解以下服務條款。當您使用本服務時，即表示您同意遵守本條款的所有規定。
+            </p>
+
+            <h2>1. 服務說明</h2>
+            <p>
+                本服務是一個供教師使用的純前端學生評分工具，主要功能包括：
+            </p>
+            <ul>
+                <li>透過 Google 帳號登入驗證</li>
+                <li>查看系統配置範圍內的學生清單並進行評分</li>
+                <li>依系統當前提供的介面與設定使用老師與學生對應功能</li>
+                <li>將評分資料同步儲存至 Google Sheets 試算表</li>
+            </ul>
+            <p>
+                本服務不設有獨立後端伺服器，所有資料讀寫均透過 Google Sheets API 進行，資料儲存於系統管理者所設定的 Google Sheets 試算表中。
+            </p>
+            <p>
+                系統提供的功能、資料呈現方式與可操作範圍，將依登入帳號、系統配置及 Google Sheets 分享權限設定而定。
+            </p>
+
+            <h2>2. 使用資格</h2>
+            <p>使用本服務須符合以下條件：</p>
+            <ul>
+                <li>擁有有效的 Google 帳號（Gmail）</li>
+                <li>您的 Gmail 已由系統管理者加入授權老師名單</li>
+                <li>您同意遵守本服務條款及 Google 服務條款</li>
+            </ul>
+            <p>
+                未獲授權的帳號將無法登入本系統。如需取得存取權限，請聯絡系統管理者。
+            </p>
+
+            <h2>3. 帳號與安全性</h2>
+            <p>
+                本服務使用 Google OAuth 2.0 進行身份驗證，不儲存您的 Google 密碼。您的帳號安全由您自行負責，請注意以下事項：
+            </p>
+            <ul>
+                <li>請勿將您的 Google 帳號或存取權限分享給他人</li>
+                <li>使用完畢後請點擊「登出」，尤其在公共裝置上</li>
+                <li>如懷疑帳號遭到未授權存取，請立即前往 Google 帳號設定撤銷本應用程式的授權</li>
+            </ul>
+
+            <h2>4. 使用規範</h2>
+            <p>您同意在使用本服務時：</p>
+            <ul>
+                <li>僅對您有權限評分的學生進行評分操作</li>
+                <li>確保輸入的評分資料真實、準確</li>
+                <li>不得嘗試繞過系統的身份驗證或權限控制機制</li>
+                <li>不得對本服務進行逆向工程、惡意攻擊或任何破壞性操作</li>
+                <li>不得利用本服務進行任何違法或不當行為</li>
+            </ul>
+
+            <h2>5. 禁止行為</h2>
+            <p>以下行為明確禁止：</p>
+            <ul>
+                <li>嘗試存取未被授權的學生資料或評分記錄</li>
+                <li>故意輸入不實評分資料</li>
+                <li>干擾或破壞本服務的正常運作</li>
+                <li>將本服務用於商業目的（未經書面授權）</li>
+                <li>蓄意使系統超載或進行阻斷服務攻擊</li>
+            </ul>
+
+            <h2>6. 資料責任</h2>
+            <div class="highlight-box">
+                <p>本服務為工具性質，評分資料的正確性與合法使用，由使用本服務的教師及系統管理者共同負責。</p>
+            </div>
+            <p>您了解並同意：</p>
+            <ul>
+                <li>本服務僅提供評分記錄工具，不對評分內容的正確性或公平性負責</li>
+                <li>Google Sheets 中的資料由系統管理者管理，本服務不對資料遺失或損毀承擔責任</li>
+                <li>您應依所在機構的規定妥善處理學生個人資料及成績資訊</li>
+            </ul>
+
+            <h2>7. 智慧財產權</h2>
+            <p>
+                本服務的原始程式碼及相關設計由開發者所有。未經明確授權，您不得複製、修改、散布或將本服務用於商業用途。
+            </p>
+            <p>
+                您透過本服務輸入的評分資料，其所有權歸屬依您所在機構的相關規定處理。
+            </p>
+
+            <h2>8. 服務免責聲明</h2>
+            <p>
+                本服務依「現狀」提供，不提供任何明示或暗示的保證，包括但不限於：
+            </p>
+            <ul>
+                <li>服務的連續性或不中斷性</li>
+                <li>資料的完整性或不遺失</li>
+                <li>服務符合特定用途的適用性</li>
+            </ul>
+            <p>
+                本服務的可用性依賴於 Google 服務（OAuth、Sheets API）的正常運作。Google 服務的中斷或變更可能影響本服務的功能。
+            </p>
+
+            <h2>9. 責任限制</h2>
+            <p>
+                在法律允許的範圍內，本服務的開發者及管理者不對以下情況承擔責任：
+            </p>
+            <ul>
+                <li>因使用或無法使用本服務而造成的任何直接或間接損失</li>
+                <li>資料遺失或損毀</li>
+                <li>第三方（包括 Google）服務中斷造成的影響</li>
+                <li>因違反本條款使用本服務所造成的任何後果</li>
+            </ul>
+
+            <h2>10. 服務變更與終止</h2>
+            <p>
+                我們保留以下權利：
+            </p>
+            <ul>
+                <li>隨時修改、暫停或終止本服務（含全部或部分功能），無需事先通知</li>
+                <li>對違反本條款的使用者暫停或撤銷存取權限</li>
+                <li>更新本服務條款，並於本頁面公告</li>
+            </ul>
+
+            <h2>11. 條款變更</h2>
+            <p>
+                我們可能不時修訂本服務條款。修訂後的條款將於本頁面公告，並更新頁首的「最後更新日期」。您在條款更新後繼續使用本服務，即視為接受修訂後的條款。
+            </p>
+
+            <h2>12. 準據法</h2>
+            <p>
+                本服務條款依中華民國法律解釋及執行。因本條款所生之爭議，雙方同意以台灣管轄法院為第一審管轄法院。
+            </p>
+
+            <h2>13. 聯絡我們</h2>
+            <p>
+                如您對本服務條款有任何疑問，請聯絡 <span data-contact-name>本系統管理者</span>。
+            </p>
+        </div>
+
+        <footer>
+            <a href="index.html">學生評分系統</a> &nbsp;·&nbsp;
+            <a href="privacy-policy.html">隱私權政策</a>
+        </footer>
+    </div>
+    <script src="env.js"></script>
+    <script>
+        (function () {
+            const appConfig = window.APP_CONFIG || {};
+            const contactName = (appConfig.LEGAL_CONTACT || '').trim() || '本系統管理者';
+
+            document.querySelectorAll('[data-contact-name]').forEach((element) => {
+                element.textContent = contactName;
+            });
+        })();
+    </script>
+</body>
+</html>

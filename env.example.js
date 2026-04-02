@@ -11,5 +11,7 @@ window.APP_CONFIG = {
   // OAuth Client ID
   GOOGLE_CLIENT_ID: 'YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com',
   // Spreadsheet ID
-  SPREADSHEET_ID: 'YOUR_SPREADSHEET_ID'
+  SPREADSHEET_ID: 'YOUR_SPREADSHEET_ID',
+  // Legal contact display name
+  LEGAL_CONTACT: 'YOUR_CONTACT_NAME'
 };

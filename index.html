@@ -43,7 +43,7 @@
             <!-- 標籤頁導航 -->
             <nav class="tabs">
                 <button class="tab-btn active" data-tab="scoring">評分</button>
-                <button class="tab-btn" data-tab="management">關係管理</button>
+                <button class="tab-btn" data-tab="management">名單設定</button>
             </nav>
 
             <!-- 評分頁面 -->
@@ -65,20 +65,20 @@
                 </div>
             </div>
 
-            <!-- 關係管理頁面 -->
+            <!-- 名單設定頁面 -->
             <div id="management-tab" class="tab-content hidden">
                 <div class="card">
-                    <h2>⚙️ 老師-學生對應關係管理</h2>
-                    <p class="description">新增、修改或刪除老師與學生的評分對應關係</p>
+                    <h2>⚙️ 名單設定</h2>
+                    <p class="description">整理評分名單與維護系統中的老師、學生基本資料</p>
                     
                     <!-- 新增關係表單 -->
                     <div class="form-section">
-                        <h3>新增對應關係</h3>
+                        <h3>新增評分名單</h3>
                         <div class="form-row">
                             <div class="form-group">
-                                <label for="new-teacher">老師</label>
+                                <label for="new-teacher">目前帳號</label>
                                 <select id="new-teacher" class="form-control">
-                                    <option value="">請選擇老師</option>
+                                    <option value="">載入中...</option>
                                 </select>
                             </div>
                             <div class="form-group">
@@ -131,7 +131,7 @@
 
                     <!-- 現有關係列表 -->
                     <div class="relations-section">
-                        <h3>現有對應關係</h3>
+                        <h3>目前評分名單</h3>
                         <div id="relations-loading" class="loading">
                             <div class="spinner"></div>
                             <p>載入中...</p>

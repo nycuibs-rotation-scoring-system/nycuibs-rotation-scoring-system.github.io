@@ -22,6 +22,9 @@ const CONFIG = {
     // 從 Google Sheets URL 中獲取: https://docs.google.com/spreadsheets/d/{SPREADSHEET_ID}/edit
     // SPREADSHEET_ID: 'YOUR_SPREADSHEET_ID',
     SPREADSHEET_ID: _ENV.SPREADSHEET_ID || '',
+
+    // 法律頁面聯絡資訊
+    LEGAL_CONTACT: _ENV.LEGAL_CONTACT || '',
     // SPREADSHEET_ID: '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',
 
 
